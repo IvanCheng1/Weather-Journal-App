@@ -1,22 +1,31 @@
 body {
-    background: #fffff8;
+    background: rgb(136, 203, 171);
+    background: linear-gradient(0deg, rgba(136, 203, 171, 1) 0%, rgba(0, 13, 60, 1) 100%);
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
 }
 
 #app {
     display: grid;
-    grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
+    /* grid-auto-rows: minmax(150px, auto); */
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "L" "R";
     height: 100vh;
-    background: #f23557;
+    /* background: #f23557; */
     color: #f0d43a;
     justify-content: center;
     grid-gap: 1em;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
+    padding: 15px;
 }
 
-.holder {}
+.holder {
+    /* margin: auto; */
+    display: grid;
+    text-align: center;
+}
 
 .entry {
     background: rgba(59, 74, 107, .4);
@@ -30,9 +39,19 @@ body {
 
 #content {}
 
-.headline {}
+.box {
+    border: 5px solid black;
+}
 
-.title {}
+.headline {
+    font-size: 3em;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.title {
+    font-size: 1.5em;
+}
 
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
@@ -40,22 +59,28 @@ body {
 label {
     display: block;
     font-size: 27px;
+    width: 70%;
+    margin: auto;
+    text-align: left;
+    padding-top: 25px;
+    /* padding-bottom: 15px; */
 }
 
 input {
     display: block;
     height: 60px;
-    width: 320px;
+    width: 70%;
     background: #22b2da;
     color: #f0d43a;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     border: none;
+    margin: auto;
 }
 
 button {
-    width: 400px;
-    height: 100px;
+    width: 70%;
+    height: 50px;
     background: #3b4a6b;
     color: #f0d43a;
     font-size: 26px;
@@ -63,24 +88,54 @@ button {
     border: none;
     box-shadow: 2px 4px 5px #444;
     transition: 0.4s;
+    cursor: pointer;
+    margin: auto;
 }
 
-button:hover {
-    background-color: #4CAF50;
-    /* Green */
-    color: white;
-    cursor: pointer;
+button span {
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+button:hover span {
+    padding-right: 25px;
+}
+
+button:hover span:after {
+    opacity: 1;
+    right: 0;
 }
 
 h1 {
     font-size: 36px;
 }
 
+p {
+    width: 70%;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
 textarea {
     background: #22b2da;
     color: #f0d43a;
+    width: 70%;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 
