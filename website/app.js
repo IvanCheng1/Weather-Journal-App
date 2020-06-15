@@ -13,7 +13,7 @@ function convertFtoC(F) {
 // get weather function
 // returns json weather data from open weather map
 const getWeather = async(baseUrl, key, city) => {
-    let fullUrl = `http://${baseUrl}q=${city}&appid=${key}`;
+    let fullUrl = `https://${baseUrl}q=${city}&appid=${key}`;
     const request = await fetch(fullUrl);
     if (request.status === 404) {
         window.alert("City not found");
@@ -54,7 +54,7 @@ function clickBtn(btn) {
     })
 }
 
-// function to submit when return is pressed 
+// function to submit when return is pressed
 function returnSubmit(box) {
     box.addEventListener("keydown", function(e) {
         // Enter is pressed
