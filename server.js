@@ -23,7 +23,7 @@ app.use(express.static('website'));
 // GET route
 app.get('/get', (request, response) => {
     response.send(projectData);
-    console.log('get route');
+    // console.log('get route');
     // console.log(projectData);
 });
 
@@ -42,5 +42,5 @@ app.post('/post', (request, response) => {
 });
 
 // Setup Server
-const port = 3000;
-const server = app.listen(port, () => { console.log(`running on localhost:${port}`) });
+const PORT = process.env.PORT || 5000;
+const server = app.listen(PORT, () => { console.log(`running on localhost:${PORT}`) });
