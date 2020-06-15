@@ -1,13 +1,13 @@
 /* Global Variables */
-const key = 'bec924968d3229ad57b29bcfa721be83';
+const key = 'bec924968d3229ad57b29bcfa721be83&units=imperial';
 const baseUrl = 'api.openweathermap.org/data/2.5/weather?';
 
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes();
 
-function convertKelvinToCelsius(kelvin) {
-    return kelvin - 273.15;
+function convertFtoC(F) {
+    return (F - 32) * 5 / 9
 }
 
 // get weather function
@@ -16,7 +16,7 @@ const getWeather = async(baseUrl, key, city) => {
     let fullUrl = `http://${baseUrl}q=${city}&appid=${key}`;
     const request = await fetch(fullUrl);
     if (request.status === 404) {
-        window.alert("Please double check the spelling of the City");
+        window.alert("City not found");
         return
     }
 
@@ -63,25 +63,34 @@ function returnSubmit(box) {
 }
 
 
+// function to check if input is empty
+function checkInput(city, feelings) {
+    if (city === '' && feelings === '') {
+        window.alert("Please enter a City and your feelings today");
+        return false;
+    } else if (city === '') {
+        window.alert("Please enter a City");
+        return false;
+    } else if (feelings === '') {
+        window.alert("Please enter your feelings today");
+        return false;
+    }
+    return true;
+}
+
+
 // function to get data from page and submit
 function submit() {
     const city = document.getElementById('city').value;
     const feelings = document.getElementById('feelings').value;
 
-    if (city === '' && feelings === '') {
-        window.alert("Please enter a City and your feelings today");
-        return
-    } else if (city === '') {
-        window.alert("Please enter a City");
-        return
-    } else if (feelings === '') {
-        window.alert("Please enter your feelings today");
+    if (!checkInput(city, feelings)) {
         return
     }
 
     weatherData = getWeather(baseUrl, key, city)
         .then((weatherData) => {
-            const temperature = Math.round(convertKelvinToCelsius(weatherData.main.temp)).toString() + "C";
+            const temperature = Math.round(convertFtoC(weatherData.main.temp)).toString() + "C";
             postWeather('/post', { temperature, newDate, feelings, city })
         })
         .then(() => {
