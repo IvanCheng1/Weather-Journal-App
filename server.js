@@ -33,6 +33,7 @@ app.post('/post', (request, response) => {
     newPost['temperature'] = request.body.temperature;
     newPost['date'] = request.body.date;
     newPost['content'] = request.body.content;
+    newPost['location'] = request.body.location;
     projectData.push(newPost);
     response.send('post received');
 
